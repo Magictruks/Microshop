@@ -1,0 +1,15 @@
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+</div>
+
+<!-- Content Row -->
+<div class="column">
+    <div class="col-sm-12">
+       <h2>Bonjour <?= htmlentities($user['firstname']) ?> <?= htmlentities($user['lastname']) ?></h2>
+    </div>
+    <hr>
+    <h2>Nombre total de commande : <?= htmlentities($commandes['total']) ?></h2>
+    <h2>Nombre de commande validée : <?= htmlentities($commandes['totalvalidate']) ?></h2>
+    <h2>Cash total : <?= htmlentities($commandes['totalprix'])?> €</h2>
+</div>

@@ -1,0 +1,11 @@
+<div class=" border rounded p-2">
+    <h3>Modifier un article</h3>
+    <form class="w-100" action="/admin/category/edit/<?= $category['id']?>" method="post">
+    <div class="form-group">
+        <label>Nom de la categorie
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter nom" value="<?= htmlentities($category['name'])?>">
+        </label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

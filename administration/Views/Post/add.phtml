@@ -1,0 +1,40 @@
+<div class=" border rounded p-2">
+    <h3>Ajouter un article</h3>
+    <form class="w-100" action="/admin/post/add" method="post">
+    <div class="form-group">
+        <label>Nom de l'article
+            <input type="text" class="form-control" id="label" name="label" placeholder="Enter label">
+        </label>
+    </div>
+    <div class="form-group">
+        <label>Description
+            <textarea class="form-control" id="description" name="description" placeholder="Enter description" row="3"></textarea>
+        </label>
+    </div>
+    <div class="form-group">
+        <label>Image Url
+            <input type="text" class="form-control" id="imageUrl" name="imageUrl" placeholder="Enter http://imageurl">
+        </label>
+    </div>
+    <div class="form-group">
+        <label>Prix
+            <input type="number" class="form-control" id="prix" name="prix" placeholder="Enter prix">
+        </label>
+    </div>
+    <div class="form-group">
+        <label>Catégorie
+            <select class="form-control" name="category[]" id="category" multiple="multiple">
+                <?php foreach($categories as $category): ?>
+                    <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
+                <?php endforeach ?>
+            </select>
+        </label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<script>
+    window.addEventListener("DOMContentLoaded", (event) => {
+        $('#category').select2()
+    })
+</script>

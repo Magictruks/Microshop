@@ -1,0 +1,12 @@
+<?php
+  require_once 'app/Models/CategoryManager.php';
+  $manager = new CategoryManager();
+  $categories = $manager->getCategories();
+?>
+<ul class="nav navbar justify-content-center" style="background-color: rgba(120, 194, 173, 0.25);">
+  <?php foreach($categories as $category): ?>
+    <li class="nav-item">
+      <a class="nav-link" style="color: #5a5a5a;" href="/category/details/<?= htmlentities($category['id'])?>"><?= htmlentities($category['name']) ?></a>
+    </li>
+  <?php endforeach ?>
+</ul>

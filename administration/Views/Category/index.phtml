@@ -1,0 +1,85 @@
+<div class="row">
+    <div class="card mb-4 col-12 p-0">
+        <div class="card-header"><i class="fas fa-table mr-1"></i>Liste des catégories</div>
+        <div class="card-body">
+            <div class="accordion" id="accordionExample">
+                <?php foreach($categories as $key => $categorie): ?>
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                        <h2 class="mb-0 d-flex justify-content-between">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse<?= htmlentities($categorie['id']) ?>" aria-expanded="true" aria-controls="collapseOne">
+                                    <span><?= htmlentities($categorie['name']) ?></span>
+                            </button>
+                            <span>
+                                        <a type="button" class="btn btn-success" href="/admin/category/edit/<?= $categorie['id']?>">Edit</a>
+                                        <button type="button" class="btn btn-danger" data-target="#suppModel" data-toggle="modal" onclick="idCategory('<?= htmlentities($categorie['id'])?>')">Delete</button>
+                            </span>
+                        </h2>
+                        </div>
+                        <div id="collapse<?= htmlentities($categorie['id']) ?>" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <?php foreach($products[$key] as $product): ?>
+                            <div class="card-body">
+                                <div class="card mb-4 col-12 p-0">
+                                    <div class="card-header">
+                                        <img src="<?=htmlentities($product['imageUrl'])?>" style="width: 50px; height: 50px;" alt="">
+                                        <?= htmlentities($product['label']) ?>
+                                    </div>
+                                    <div class="card-body">
+                                        <?= htmlentities($product['description']) ?><hr>
+                                        <?= htmlentities($product['prix']) ?> € <hr>
+                                        <a type="button" class="btn btn-success" href="/admin/post/edit/<?= htmlentities($product['id'])?>">Edit</a>
+                                        <button type="button" class="btn btn-danger" data-target="#suppModel" data-toggle="modal" onclick="idPost('<?= htmlentities($product['id'])?>')">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach ?>
+                        </div>
+                    </div>
+                <?php endforeach ?>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+<!-- Fenetre de validation -->
+
+<div class="modal fade" id="suppModel" role="dialog" aria-hidden="true">
+
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Êtes vous sur de vouloir supprimer ce produit ?</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+        </div>
+        <div class="modal-body">Vous ne pourrez pas revenir en arrière après</div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
+            <button class="btn btn-primary" onclick="redirectUrlCategory()">Supprimer ce produit</button>
+        </div>
+    </div>
+    </div>
+</div>
+<!-- ------------------ -->
+<script>
+    let $idPost;
+    let $idCategory;
+
+    function idCategory($id) {
+        $idCategory = $id;
+    }
+    function idPost($id) {
+        $idPost = $id;
+    }
+
+    function redirectUrl(){
+        console.log($idPost)
+        window.location = `/admin/post/delete/${$idPost}`;
+    }
+
+    function redirectUrlCategory(){
+        console.log($idCategory)
+        window.location = `/admin/category/delete/${$idCategory}`;
+    }
+</script>

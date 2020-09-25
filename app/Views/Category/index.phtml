@@ -1,0 +1,22 @@
+<div class="row">
+
+      
+      <!-- /.col-lg-3 -->
+
+      <div class="col-lg-9">
+
+      <?php foreach($categories as $category): ?>
+        <a href="/category/details/<?= htmlentities($category['id'])?>">
+        <div class="card mt-4">
+          <div class="card-body">
+            <h3 class="card-title"><?= htmlentities($category['name']) ?></h3>
+          </div>
+        </div>
+        </a>
+        <?php endforeach ?>
+        <!-- /.card -->
+
+      </div>
+      <!-- /.col-lg-9 -->
+
+    </div>

@@ -1,0 +1,25 @@
+<div class=" border rounded p-2">
+    <h3>Modifier un utilisateur</h3>
+    <form class="w-100" action="/admin/user/edit/<?= $user['id']?>" method="post">
+    <div class="form-group">
+        <label>Email
+            <input type="email" class="form-control" id="label" name="email" placeholder="Enter label" value="<?= htmlentities($user['email']) ?>">
+        </label>
+    </div>
+    <div class="form-group">
+        <label>Pseudo
+            <textarea class="form-control" id="description" name="username" placeholder="Enter description" row="3"><?= htmlentities($user['username']) ?></textarea>
+        </label>
+    </div>
+    <div class="form-group">
+        <label>Prénom
+            <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter http://imageurl" value="<?= htmlentities($user['firstname']) ?>">
+        </label>
+    </div><div class="form-group">
+        <label>Nom
+            <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Enter http://imageurl" value="<?= htmlentities($user['lastname']) ?>">
+        </label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

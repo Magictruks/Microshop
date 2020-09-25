@@ -1,0 +1,22 @@
+    <div class="row">
+      
+      <!-- /.col-lg-3 -->
+      <div class="col-lg-9">
+
+      <h3><?= htmlentities($category['name']) ?></h3>
+      <?php foreach($produits as $produit): ?>
+        <div class="media col-12 border rounded p-0 mb-2" style="overflow: hidden">
+          <img src="<?= $produit['imageUrl'] ?>" class="mr-3" alt="" style="width: 200px; height: 200px;">
+          <div class="media-body">
+            <h5 class="mt-0"><a style="font-size: 30px;" href="/produit/details/<?=$produit['id']?>" class="card-title"><?= htmlentities($produit['label']) ?></a></h5>
+            <h4><?= htmlentities($produit['prix']) ?> €</h4>
+            <?= htmlentities($produit['description']) ?>
+          </div>
+        </div>
+      <?php endforeach ?>
+        <!-- /.card -->
+
+      </div>
+      <!-- /.col-lg-9 -->
+
+    </div>

@@ -1,0 +1,78 @@
+<div class="row">
+    <div class="card mb-4 col-12 p-0">
+        <div class="card-header"><i class="fas fa-table mr-1"></i>Liste des produits</div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Label</th>
+                            <th>Description</th>
+                            <th>Prix</th>
+                            <th>Quantité</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if(!empty($_SESSION['panier'])): ?>
+                            <?php foreach($_SESSION['panier'] as $key => $product): ?>
+                                <tr>
+                                    <td><?= htmlentities($product['label']) ?></td>
+                                    <td><?= htmlentities($product['description']) ?></td>
+                                    <td><?= htmlentities($product['prix']) ?></td>
+                                    <td><?= htmlentities($product['quantity']) ?></td>
+
+                                    <td>
+                                        <button type="button" class="btn btn-danger" data-target="#suppModel" data-toggle="modal" onclick="idPost(<?= $key?>)">Delete</button>
+
+                                        <!-- Fenetre de validation -->
+
+                                        <div class="modal fade" id="suppModel" role="dialog" aria-hidden="true">
+
+                                            <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Êtes vous sur de vouloir supprimer ce produit ?</h5>
+                                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                                </div>
+                                                <div class="modal-body">Vous ne pourrez pas revenir en arrière après</div>
+                                                <div class="modal-footer">
+                                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
+                                                    <button class="btn btn-primary" onclick="redirectUrl()">Supprimer ce produit</button>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        <!-- ------------------ -->
+                                    </td>
+                                </tr>
+                            <?php endforeach ?>
+                        <?php endif ?>
+                    </tbody>
+                </table>
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Total : <?= !empty($_SESSION['somme']) ? $_SESSION['somme'] : '0' ?> €</th>
+                        </tr>
+                    </thead>
+                </table>
+                <a type="button" class="btn btn-primary" href="/panier/credit">Valider la commande</a>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+<script>
+    let $idPost;
+    function idPost($id) {
+        $idPost = $id;
+    }
+
+    function redirectUrl(){
+        console.log($idPost)
+        window.location = `/panier/delete/${$idPost}`;
+    }
+</script>
